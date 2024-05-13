@@ -1,0 +1,61 @@
+Conception et implémentation d'une base de données
+
+Réflexion et Création d'un UML
+Création des bases de données 
+Lecture des fichiers et insertion des données
+Développement d'un outil de commande
+Création de fichier log
+Développement d'une interface graphique
+Création d'un outil d'analyse de vente
+
+
+
+
+Réflexion et création d'un UML :
+
+Réalisation d'un schéma UML pour définir la structure de la base de données.
+Création des bases de données :
+
+Création d'une base de données principale nommée "base.db" en utilisant le langage SQL.
+Création d'une deuxième base de données nommée "analye.db" pour l'analyse des ventes.
+Lecture des fichiers et insertion des données :
+
+Lecture de fichiers aux formats CSV, JSON et TXT pour récupérer les données de l'inventaire.
+Insertion des données dans les tables de la base de données principale.
+Développement d'un outil de commande :
+
+Création d'un outil en ligne de commande pour la gestion des stocks et des rayons.
+Fonctions disponibles : recherche d'un produit, échange de produits entre stock et rayon, changement de place d'un produit, ajout ou suppression de produits.
+Création de fichiers log :
+
+Création d'un fichier log pour enregistrer les actions effectuées lors de la gestion des stocks et des rayons.
+Création d'un fichier log pour enregistrer les actions effectuées lors des ventes.
+Développement d'une interface graphique :
+
+Création d'une interface utilisateur pour la saisie des informations de vente.
+Génération de tickets de vente avec les détails des produits vendus.
+Création d'un outil d'analyse des ventes :
+
+Utilisation du langage RStudio pour analyser les données de vente.
+Réalisation de différents graphiques pour visualiser les ventes par produit, par catégorie, par sous-catégorie, etc.
+
+
+
+
+
+
+Dans le cadre de notre projet de conception et d'implémentation d'une base de données, nous avons travaillé sur le développement d'un système de gestion pour une épicerie. Notre objectif était de créer un outil efficace et fonctionnel qui permettrait à l'épicerie de gérer son inventaire, ses ventes et d'analyser les données pour optimiser ses opérations.
+
+Ce rapport présente de manière synthétique les différentes étapes de notre projet. Nous avons commencé par réfléchir à la structure de la base de données en créant un schéma UML qui nous a servi de guide tout au long du processus de conception. Ensuite, nous avons procédé à la création des bases de données nécessaires, en utilisant le langage SQL pour définir les tables et les relations entre elles.
+
+Une fois les bases de données mises en place, nous avons travaillé sur la lecture des fichiers contenant les informations de l'inventaire de l'épicerie. Nous avons extrait les données des fichiers au format CSV, JSON et TXT, et les avons insérées dans les tables correspondantes de la base de données.
+
+Par la suite, nous avons développé un outil de commande en ligne qui permet à l'utilisateur de gérer les stocks et les rayons. Cet outil offre des fonctionnalités telles que la recherche de produits, l'échange de produits entre le stock et le rayon, le changement de place d'un produit, ainsi que l'ajout ou la suppression de produits.
+
+Pour assurer un suivi précis des actions effectuées, nous avons créé des fichiers log qui enregistrent les opérations réalisées lors de la gestion des stocks et des ventes. Ces fichiers fournissent un historique des actions passées et permettent d'identifier d'éventuelles erreurs ou problèmes.
+
+Nous avons également développé une interface graphique conviviale pour faciliter la saisie des informations de vente. Cette interface permet à l'utilisateur d'entrer les détails des produits vendus et génère des tickets de caisse détaillés.
+
+Enfin, pour analyser les ventes et obtenir des insights utiles, nous avons utilisé le logiciel RStudio. Nous avons importé les données de vente dans RStudio et avons créé différents graphiques et analyses pour visualiser les tendances de vente, les produits les plus populaires, les catégories les plus rentables, etc.
+
+Ce projet a été l'occasion de mettre en pratique nos compétences en conception et en implémentation de bases de données, ainsi qu'en développement d'outils de gestion et d'analyse des données. Nous espérons que ce rapport synthétique mettra en évidence notre travail et notre capacité à répondre aux besoins d'une entreprise en matière de gestion des données.

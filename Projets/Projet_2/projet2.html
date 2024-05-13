@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lou-Anne THOMAS</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://kit.fontawesome.com/d3df4548d4.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!-- Barre de navigation -->
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../../index.html">
+                    <img src="../../Image/Mon_logo_bleu.png" alt="Logo de votre site">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#Définition">Définition</a></li>
+                <li><a href="#Présentation">Présentation</a></li>
+                <li><a href="#Projets">Projets</a></li>
+            </ul>
+        </nav>
+
+        <!-- Section Accueil -->
+        <section class="accueil" id="accueil">
+            <div class="accueil-content">
+                <h1>Analyse d'une série chronologique représentant le nombre de <br>
+                    nuitées dans l’hôtellerie en Normandie</h1>
+                <p><b>Thématique :</b> Programmation automatisé (RStudio)</p>
+                <a href="#Projets" class="cta-button">Voir le projet</a>
+            </div>
+        </section>
+
+        <!-- Section Présentation -->
+        <section class="Définition" id="Définition">
+            <div class="Définition-content">
+                <h2>Présentation</h2>
+                <h3>Analyse des infractions en France Métropolitaine entre 2012 et 2021</h3>
+                <p> Ce projet de groupe, réalisé au sein de ma formation, a consisté à nous faire manipuler le traitement et l'analyse de données au moyen du logiciel RStudio.
+                    
+                </p>
+        
+
+                
+            </div>
+        </section>
+
+        <!-- Section Présentation -->
+        <section class="Présentation" id="Présentation">
+                <h2>Présentation</h2>
+
+                <div class="projet">
+                    <i class="fas fa-laptop"></i>
+                    <h3>Le jeu de données</h3>
+                    <p class="Paragraphe-align-justify"><br>
+                         - C'est un échantillon de 252 patients de sexe masculin.<br><br>
+                         - 12 variables morphologique sont préssentes.<br><br>
+                         - Source : <a href="https://www.kaggle.com/datasets/fedesoriano/body-fat-prediction-dataset" target="_blank" style="color:#e88c6d; text-decoration: underline;"> Cliquer ici pour vous diriger vers le lien</a><br><br><br><br>                
+
+                    </p>
+                </div>
+
+                <div class="projet">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Objectif</h3>
+                    <p class="Paragraphe-align-justify">
+                        Lors de se projet, nous avons cherché à étudier l’association entre l’indice de masse maigre et chacune des variables morphologiques.<br><br>
+                        Ainsi, à l'aide du logiciel Rstudio, nous avons pu déterminer laquelle des variables morphologique explique le mieux les variations de la variable FFMI.
+                    </p>
+                </div>
+
+                <div class="projet">
+                    <i class="fas fa-file-lines"></i>
+                    <h3>Résultats</h3>
+                    <p class="Paragraphe-align-center">
+                        <a href = "./Contenu/Code_R.txt" target="_blank">- Cliquer ici pour accéder au code R : <br><i class="fa-solid fa-file-export"></i></a>
+                        <a href = "./Contenu/Rapport_regression.pdf" target="_blank" style="color:#0f3051; text-decoration: none ;"><br>- Cliquer ici pour accéder au rapport : <br><i class="fa-solid fa-file-export"></i></a><br><br><br>
+                    </p>
+                </div>
+
+                <div class="image_projet">
+                    <h3 class="Titre">Extrait du jeu de données</h3>
+                    <img src="./Image/Présentation_données.jpg" style ="width: 80%; " alt="Jeux de données"></div>
+
+                </div>
+        </section>
+
+        <!-- Section Projets -->
+        <section class="Projets" id="Projets">
+            <div class="Projets-content">
+                <h2>Autres projets</h2>
+                <p>
+                    Souhaitez-vous découvrir un autre de mes projets ?
+                </p>
+            </div>
+            <div id="carrousel">
+                <div id="carrousel-container">
+                    <div id="container"></div>
+                </div>
+                <img src=".\Image\fleche_white.svg" class="bouton" id="d"/>
+                <img src=".\Image\fleche_white.svg" class="bouton" id="g"/>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2023 Lou-Anne THOMAS.</p>
+        </footer>
+
+
+        <script> 
+
+            document.body.onload = function() {
+                nbr = 4;
+                p = 0;
+                container = document.getElementById('container');
+                g = document.getElementById('g');
+                d = document.getElementById('d');
+                container.style.width = (400 * nbr) + 'px';
+                
+                var urls = [
+                'Projets/Projet_1/projet1.html',
+                'Projets/Projet_2/projet2.html',
+                'Projets/Projet_3/projet3.html',
+                'Projets/Projet_4/projet4.html'
+                ];
+
+                for (i = 1; i <= nbr; i++) {
+                div = document.createElement("div");
+                div.className = 'photo';
+                div.style.backgroundImage = "url('../../Image/projet" + i + ".png')";
+                div.setAttribute('data-url', urls[i - 1]);
+
+                div.addEventListener('click', function(e) {
+                    // Vérifier si l'événement click a été déclenché par l'image elle-même, et non par l'un de ses enfants
+                    if (e.target.classList.contains('photo')) {
+                    var url = this.getAttribute('data-url');
+                    window.location.href = url;
+                    }
+                });
+
+                div.addEventListener('mouseenter', function() {
+                    this.classList.add('hovered');
+                });
+
+                div.addEventListener('mouseleave', function() {
+                    this.classList.remove('hovered');
+                });
+
+                container.appendChild(div);
+                }
+
+                afficherMasquer();
+            }
+
+            
+            d.onclick=function(){
+                if(p>-nbr+1)
+                    p--;
+                container.style.transform="translate("+p*400+"px)";
+                container.style.transition="all 0.5s ease";
+                afficherMasquer();
+            }
+
+            g.onclick=function(){
+                if(p<0)
+                    p++;
+                container.style.transform="translate("+p*400+"px)";
+                container.style.transition="all 0.5s ease";
+                afficherMasquer();
+            }
+
+            function afficherMasquer(){
+                if(p==-nbr+1)
+                    d.style.visibility="hidden";
+                else
+                    d.style.visibility="visible";
+
+                if(p==0)
+                    g.style.visibility="hidden";
+                else
+                    g.style.visibility="visible";
+            }
+
+        </script>
+    </body>
+</html>

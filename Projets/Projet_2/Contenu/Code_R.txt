@@ -1,0 +1,325 @@
+# ==========================================================================================================================================#
+#' ---
+#' title: "SAE - Régression sur données réelles"
+#' author: "Lou-Anne Thomas - Clémence Swertvaeger - Elias Schieber"
+#' date: "26/03/2023"
+#' source: "bodyfat.csv"
+#' ---
+# ==========================================================================================================================================#
+
+
+# ==========================================================================================================================================#
+# --- Chargement des librairies ---
+
+library(flextable)
+library(modelsummary)
+
+# ==========================================================================================================================================#
+# --- Chargement des données ---
+
+
+readLines(con = "./Data/bodyfat.csv", n = 10)
+
+dataset <- read.table(file = "./Data/bodyfat.csv",
+                     sep = ";",
+                     header = TRUE)
+
+
+head(dataset, n = 10)
+str(dataset)
+View(dataset)
+# ==========================================================================================================================================#
+# --- Préparation des données 1/2 ----
+
+# 1) Conversion des variables height et weight
+
+dataset$height <- dataset$height * 0.0254
+dataset$weight <- dataset$weight * 453.59237 / 1000
+
+
+# 2) Calcul des indicateurs : Siri, FFM et FFMI
+
+dataset$siri <- (495 / dataset$density) - 450
+dataset$FFM <- dataset$weight * (1 - (dataset$siri / 100))
+dataset$FFMI <- dataset$FFM / (dataset$height)^2
+
+summary(dataset$height)
+summary(dataset$weight)
+
+# 3) Sélection des variables d'intérêt pour la suite de l'étude dans dataset2
+
+dataset2 <- subset(dataset,
+                   select = c(neck, chest, abdomen, hip, thigh, knee, ankle, biceps, forearm, wrist, FFMI))
+
+# ==========================================================================================================================================#
+# --- Analyse exploratoire 1/2 ----
+
+
+# 1) Résumé numérique
+
+summary(dataset2)
+
+# 2) Distribution des variables d'intérêt sous forme de boîte à moustache
+
+stacked_data <- stack(dataset2[])
+
+boxplot(values ~ ind, data = stacked_data,
+        col = "grey",
+        main = "Distribution des variables d'intérêt",
+        xlab = "Variables d'intérêt",
+        ylab = "Valeurs")
+
+
+# 3) Visualisation de l'histogramme et de la densité lissée de chacune des variables d'intérêt
+
+
+graph1 <- function(var) {
+  
+  hist(dataset2[[var]],
+       col = "grey80",
+       probability = TRUE,
+       main = paste("Distribution - ", var),
+       xlab = var)
+  
+  lines(density(dataset2[[var]]),
+        col = "blue",
+        lwd = 2)
+}
+
+par(mfrow = c(3, 2))
+
+lapply(X = c("abdomen", "hip", "thigh", "knee", "ankle", "biceps"),
+       FUN = graph1)
+
+lapply(X = c("chest", "forearm", "wrist", "neck", "FFMI"),
+       FUN = graph1)
+
+par(mfrow = c(1, 1))
+
+# 4) Visualisation des nuages de dispersion avec une courbe de régression lissée croisant la variable FFMI aux variables morphologiques 
+
+graph2 <- function(varx) {
+  
+  Loess <- loess(dataset2[["FFMI"]] ~ dataset2[[varx]])
+  
+  temp <- data.frame(dataset2[, c("FFMI", varx)], Loess = fitted(Loess))
+  temp <- temp[order(temp[[varx]]), ]
+  
+  plot(dataset2[["FFMI"]] ~ dataset2[[varx]],
+       pch = 20,
+       main = paste("Nuage de dispersion : FFMI vs ", varx, sep = ""),
+       xlab = varx,
+       ylab = "FFMI")
+  
+  lines(temp$Loess ~ temp[[varx]],
+        col = "red",
+        lwd = 2)
+}
+
+
+
+par(mfrow = c(2, 2))
+
+lapply(X = c("neck", "chest", "abdomen", "hip"),
+       FUN = graph2)
+
+lapply(X = c("biceps", "thigh", "knee", "ankle"),
+       FUN = graph2)
+
+lapply(X = c("forearm", "wrist"),
+       FUN = graph2)
+
+par(mfrow = c(1, 1))
+
+# ==========================================================================================================================================#
+# --- Préparation des données 2/2 ----
+
+
+# 1) Ciblage des valeurs fortement atypiques (supérieures à Q3 + 3 * l'écart interquartile)
+
+
+# Recueillement des variables fortement atypiques au sein de la variable "atypique"
+iqr_3 <- function(x) {
+  q3 <- quantile(x, 0.75)
+  iqr <- IQR(x)
+  return(q3 + 3 * iqr)
+}
+
+atypique <- subset(dataset2, 
+                   FFMI > iqr_3(dataset2$FFMI) |
+                   neck > iqr_3(dataset2$neck) |
+                   chest > iqr_3(dataset2$chest) |
+                   abdomen > iqr_3(dataset2$abdomen) |
+                   hip > iqr_3(dataset2$hip) |
+                   thigh > iqr_3(dataset2$thigh) |
+                   knee > iqr_3(dataset2$knee) |
+                   ankle > iqr_3(dataset2$ankle) |
+                   biceps > iqr_3(dataset2$biceps) |
+                   forearm > iqr_3(dataset2$forearm) |
+                   wrist > iqr_3(dataset2$wrist)
+)
+
+atypique <- flextable(atypique)
+atypique <- add_header_lines(atypique, "Valeurs fortement atypiques présentes dans le jeu de données")
+atypique <- align(atypique, align = "center", part = "header")
+print(atypique)
+
+
+
+# 2) Élimination par filtrage des valeurs fortement atypiques au sein de dataset3
+
+dataset3 <- subset(dataset2, 
+                   FFMI <= iqr_3(dataset2$FFMI) &
+                   neck <= iqr_3(dataset2$neck) &
+                   chest <= iqr_3(dataset2$chest) &
+                   abdomen <= iqr_3(dataset2$abdomen) &
+                   hip <= iqr_3(dataset2$hip) &
+                   thigh <= iqr_3(dataset2$thigh) &
+                   knee <= iqr_3(dataset2$knee) &
+                   ankle <= iqr_3(dataset2$ankle) &
+                   biceps <= iqr_3(dataset2$biceps) &
+                   forearm <= iqr_3(dataset2$forearm) &
+                   wrist <= iqr_3(dataset2$wrist)
+)
+
+# ========================================================================================================================================== #
+# --- Analyse exploratoire 2/2 ----
+
+# 1) Visualisation des nuages de dispersion avec une courbe de régression lissée croisant la variable FFMI aux variables morphologiques
+
+graph3 <- function(varx) {
+  
+  Loess <- loess(dataset3[["FFMI"]] ~ dataset3[[varx]])
+  
+  temp <- data.frame(dataset3[, c("FFMI", varx)], Loess = fitted(Loess))
+  
+  temp <- temp[order(temp[[varx]]), ]
+  
+  plot(dataset3[["FFMI"]] ~ dataset3[[varx]],
+       pch = 20,
+       main = paste("Nuage de dispersion : FFMI vs ", varx, sep = ""),
+       xlab = varx,
+       ylab = "FFMI")
+  
+  lines(temp$Loess ~ temp[[varx]],
+        col = "red",
+        lwd = 2)
+}
+
+
+par(mfrow = c(2, 2))
+lapply(X = c("neck", "chest", "abdomen", "hip"),
+       FUN = graph3)
+
+lapply(X = c("biceps", "thigh", "knee", "ankle"),
+       FUN = graph3)
+
+lapply(X = c("forearm", "wrist"),
+       FUN = graph3)
+
+par(mfrow = c(1, 1))
+
+
+# 2) Mesure de l'intensité de l'association linéaire entre la variable FFMI et chacune des variables morphologiques
+
+temp1 <- subset(dataset3, select = -FFMI)
+pearson <- apply(temp1, 2, function(x) cor(dataset3$FFMI, x, method = "pearson"))
+pearson <- t(data.frame(pearson))
+pearson <- round(100 * pearson, 2)
+pearson <- data.frame(pearson)
+
+table_pearson <- flextable(pearson)
+table_pearson <- add_header_lines(table_pearson, "Corrélation FFMI & variables morphologiques")
+table_pearson <- align(table_pearson, align = "center", part = "header")
+
+print(table_pearson)
+
+rm(temp1)
+
+# ==========================================================================================================================================#
+# --- Modélisation ----
+
+
+# 1) Création de modèles de régression linéaire entre la variable à expliquer (FFMI) et chacune des variables explicatives (variables morphologiques)
+
+# Modèle 1 : FFMI versus neck
+model1 <- lm(FFMI ~ neck, data = dataset3)
+
+# Modèle 2 : FFMI versus chest
+model2 <- lm(FFMI ~ chest, data = dataset3)
+
+# Modèle 3 : FFMI versus abdomen
+model3 <- lm(FFMI ~ abdomen, data = dataset3)
+
+# Modèle 4 : FFMI versus hip
+model4 <- lm(FFMI ~ hip, data = dataset3)
+
+# Modèle 5 : FFMI versus thigh
+model5 <- lm(FFMI ~ thigh, data = dataset3)
+
+# Modèle 6 : FFMI versus knee
+model6 <- lm(FFMI ~ knee, data = dataset3)
+
+# Modèle 7 : FFMI versus ankle
+model7 <- lm(FFMI ~ ankle, data = dataset3)
+
+# Modèle 8 : FFMI versus biceps
+model8 <- lm(FFMI ~ biceps, data = dataset3)
+
+# Modèle 9 : FFMI versus forearm
+model9 <- lm(FFMI ~ forearm, data = dataset3)
+
+# Modèle 10 : FFMI versus wrist
+model10 <- lm(FFMI ~ wrist, data = dataset3)
+
+
+# 2) Création d'un tableau de synthèse regroupant les modèles créés
+
+models <- list(Model1 = model1,
+               Model2 = model2,
+               Model3 = model3,
+               Model4 = model4,
+               Model5 = model5,
+               Model6 = model6,
+               Model7 = model7,
+               Model8 = model8,
+               Model9 = model9,
+               Model10 = model10)
+
+modelsummary(models)
+# ==========================================================================================================================================#
+# --- Visualisation du meilleur modèle ----
+
+# 1) Résumé numérique du meilleur modèle
+summary(model1)
+
+# 2) Représentation du modèle de régression accompagnée de la droite des moindres carrés
+
+graph4 <- function(varx) {
+  
+  Lm <- lm(dataset3[["FFMI"]] ~ dataset3[[varx]])
+
+  
+  temp <- data.frame(dataset3[, c("FFMI", varx)], Lm = fitted(Lm))
+  
+  temp <- temp[order(temp[[varx]]), ]
+  
+  plot(dataset3[["FFMI"]] ~ dataset3[[varx]],
+       pch = 20,
+       main = paste("Nuage de dispersion : variable vs ", varx, sep = ""),
+       xlab = varx,
+       ylab = "FFMI")
+  
+  lines(temp$Lm ~ temp[[varx]],
+        col = "red",
+        lwd = 2)
+  
+  legend(x = "topleft",
+         legend = c("FFMI = 3.76207 + 0.43558 * neck", "     R-Squared = 31,4 %"),
+         bty = "n")
+  
+  
+}
+
+lapply(X = c("neck"),
+       FUN = graph4)

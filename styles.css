@@ -1,0 +1,470 @@
+/* Reset des styles par défaut */
+html, body, div, img, h1, h2, h3, p, ul, li, a {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*Effet scroll, rend la navigation plus agréable*/
+html {
+  scroll-behavior: smooth;
+}
+
+/* Police globale */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.titre{
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  font-weight: 100;
+  font-size : 18px;
+  text-align: center;
+  color : #FE7765;   
+  line-height: 0;
+  margin-top:70px;
+}
+
+.Bloc_blanc{
+
+  background-color: white;
+  height: 76px;
+  width: 100%;
+
+}
+/* Barre de navigation */
+.navbar {
+  z-index: 9999;/* Valeur suffisamment élevée pour s'assurer que la barre de navigation est au-dessus des autres éléments */   
+  position: fixed;
+  width: 100%;
+  background-color: #0f3051;
+  color: #fff;
+  width: 100%;
+  height: 65px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px #1f1f1f51;
+
+}
+
+.logo img {
+  height: 40px;
+}
+
+.nav-links {
+  list-style: none;
+}
+
+.nav-links li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+
+}
+
+.nav-links li a:hover {
+  color: #fe7563;
+}
+
+/* Section Accueil */
+
+.accueil {
+  background: url('./Image/Feuille_de_fond.jpg') no-repeat center;
+  height: 100vh;
+  width: 100%;
+  color: #fff;
+  min-height: 500px;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+
+/* page de bienvenue (landing page) */
+
+.accueil-content {
+  padding: 20px 50px;
+}
+
+.big-title {
+  color: white;
+  font-size:  100px;
+  font-family: 'Arial Narrow Bold', sans-serif;
+  color: white;
+  font-weight: 100;
+  width: 80%;
+  margin-top: 20%;
+}
+
+
+
+
+/* Image à propos*/
+.image-moi {
+  width: 200px; /* Ajustez la taille du conteneur selon vos besoins */
+  height: 200px;
+  border-radius: 50%; /* Crée un cercle en utilisant un rayon de 50% */
+  overflow: hidden; /* Masque tout contenu dépassant de la forme */
+  display: block;
+  margin: auto;
+}
+
+.image-moi img {
+  width: 100%; /* Ajuste la taille de l'image pour remplir le conteneur */
+  height: 100%;
+  object-fit: cover; /* Redimensionne l'image pour remplir le conteneur */
+}
+
+
+.paragraphe-moi {
+  background-color: #f4f3f3;
+  padding: 20px;
+  width: 75%;
+  text-align: justify;
+  margin-left:  auto;
+  margin-right:  auto;
+  line-height: 1.5;
+  color : #11375e;
+}
+
+
+
+
+/* Section Projets */
+.Projets {
+  background-color: #0f3051;
+  color: #ffffff;
+  padding: 50px 0;
+}
+
+.Projets-content {
+  text-align: center;
+}
+
+.Projets h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.Projets p {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+/* Footer */
+
+footer {
+  background-color: #fe7563;
+  color: #fff;
+  text-align: center;
+  padding: 40px;
+}
+
+
+/* Carrousel */
+
+#carrousel{
+  width: 88%;
+  height:2%;
+  position:relative;
+  margin: auto;  
+}
+
+#carrousel-container{
+  width: 60%;
+  height:2%;
+  position:relative;
+  margin: auto;
+  overflow:hidden;
+  
+}
+
+#container{
+  width: 400px;
+  height:200px;
+}
+
+.photo{
+  width:400px;
+  height:200px;
+  margin:0;
+  display:inline-block;
+  background-size:cover;
+  cursor:pointer;
+  border-right: 20px solid #0F3051;
+  border-left: 20px solid #0F3051; 
+  transition: transform 0.3s ease;
+}
+
+.photo:hover {
+  transform: scale(1.1); /* Zoom de 10% lorsque survolé */
+}
+
+.bouton{
+  width: 40px;
+  cursor:pointer;
+  top:35%;
+  position:absolute;
+}
+
+#g{
+  left: 10%;
+  transform:rotate(0deg);
+  transition:all 0.3s ease;
+}
+
+#d{
+  right:10%;
+  transform:rotate(180deg);
+  transition:all 0.3s ease;
+}
+
+#g:hover{
+  transform:rotate(0deg) scale(1.1);
+  opacity:0.7;
+  transition:all 0.3s ease;
+}
+
+#d:hover{
+  transform:rotate(180deg) scale(1.1);
+  opacity:0.7;
+  transition:all 0.3s ease;
+}
+
+
+
+
+
+/* Contact section */
+
+
+.contact .contact-content .row{
+  display: flex;
+  height: 65px;
+  align-items: center;
+}
+.contact .contact-content .row .info{
+  margin-left: 30px;
+}
+.contact .contact-content .info .head{
+  font-weight: 500;
+}
+.contact .contact-content .info .sub-title{
+  color: #333;
+}
+.contact .right form .fields{
+  display: flex;
+}
+  
+.contact-content p {
+  text-align: justify;
+}
+
+.contact .contact-content .column{
+  width: calc(50% - 30px);
+}
+
+
+.contact .contact-content .text{
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5%;
+}
+
+.contact .contact-content .row i{
+  font-size: 25px;
+  color: #16487a;
+}
+.contact .contact-content{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+
+
+/* hamburger*/
+
+.navbar .menu-hamburger {
+  display: none;
+  position:absolute;
+  right:10px;
+
+}
+
+
+
+
+/* Brouillon */
+
+
+
+/*///////////////////////////////////////////////*/
+
+/* Responsive*/
+/* Media query pour les écrans de taille réduite */
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none; /* Masquer les liens de navigation sur les petits écrans */
+    flex-direction: column; /* Afficher les liens de navigation en colonne */
+    text-align: center; /* Centrer le texte */
+    background-color: #0f3051e5;
+    margin-top:150px; 
+    padding-top: 50px;
+    line-height: 2; 
+
+  }
+  .nav-links li  {
+    padding-left: 10px;
+  }
+
+  .nav-links :hover {
+    background-color: #052547;
+    width: 100%; 
+    
+  }
+
+  .nav-links li a:hover {
+    color: #fe7563;
+  }
+  
+
+  .navbar .menu-hamburger {
+    display: block; /* Afficher l'icône du menu hamburger sur les petits écrans */
+    cursor: pointer;
+    right: 57px;
+  }
+ /* Afficher les liens de navigation lorsque la classe 'active' est présente */
+ .nav-links.active {
+  display: flex;
+  }
+
+  /* Gestion du carrousel*/
+
+  #carrousel-container {
+    width: auto; /* Pour que la largeur s'adapte à la largeur des images */
+    display: flex; /* Pour que les images soient alignées horizontalement */
+    justify-content: flex-start; /* Alignement des images au début du conteneur */
+    margin-right:20px;
+    margin-left:10px;
+
+  }
+
+  #container {
+      width: auto; /* Pour que la largeur s'adapte à la largeur des images */
+      flex: 0 0 auto; /* Les images ne doivent pas se rétrécir ou s'agrandir */
+  }
+
+
+  .bouton{
+    width: 30px;
+    cursor:pointer;
+    top:35%;
+    position:absolute;
+  }
+
+  #g {
+    left: -30px; 
+  }
+
+  #d {
+      right: -30px; /* Positionner le bouton droit à droite */
+  }
+
+  /* Gestion de l'affichage du cv*/
+  .column-right .text {
+    display: none;
+  }
+  .cv-preview {
+    display: none;
+  }
+
+  
+  .accueil {
+    background: url('./Image/Feuille_de_fond.jpg') no-repeat center;
+    height: 50vh;
+    width: 100%;
+    color: #fff;
+    min-height: 500px;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Ubuntu', sans-serif;
+  }
+
+  .accueil-content {
+    padding: 20px 30px;
+  }
+
+  .big-title{
+    font-size: 4em;
+    font-weight: bold;
+  }
+
+  .contact .contact-content .column{
+    width: calc(100%);
+  }
+
+  
+}
+
+
+
+/* Responsive*/
+/* Media query pour les écrans de taille réduite */
+@media screen and (max-width: 1450px) {
+
+  .contact .contact-content .column{
+    width: calc(100%);
+  }
+  /* Gestion de l'affichage du cv*/
+  .column-right .text {
+    display: none;
+  }
+  .cv-preview {
+    display: none;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,281 @@
+/* Reset des styles par défaut */
+html, body, div, img, h1, h2,h3, ul, li, a {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h3{
+  color : #0f3051e9;
+  font-size: 25px;
+  padding : 10px;
+}
+
+.Titre{padding : 40px;}
+
+p { 
+  padding: 10px;  
+}
+
+/* Police globale */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Barre de navigation */
+.navbar {
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  background-color: #0f3051;
+  color: #fff;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px #1f1f1f51;
+
+}
+
+.logo img {
+  height: 40px;
+}
+
+.nav-links {
+  list-style: none;
+}
+
+.nav-links li {
+  display: inline-block;
+
+  margin-right: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #fe7563;
+}
+
+/* Section Accueil */
+
+
+.accueil {
+  background-image: url("chemin/vers/votre-image-accueil.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f3051;
+}
+
+.accueil-content {
+  text-align: center;
+}
+
+.accueil h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.accueil p {
+  font-size: 24px;
+  margin-bottom: 40px;
+  color : #2e2e2e;
+}
+
+.cta-button {
+  background-color: #fe7563;
+  color: #fff;
+  padding: 15px 30px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #f9624e;
+}
+
+/* Section Définition */
+.Définition {
+  background-color: #f4f3f3;
+  padding: 50px 0;
+}
+
+.Définition-content {
+  text-align: justify;
+  margin : 3%
+}
+
+.Définition h2 {
+  font-size: 36px;
+  color: #0f3051;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.Définition p {
+  font-size: 18px;
+  color: #000;
+  line-height: 1.6;
+}
+
+/* Section Présentation */
+.Présentation {
+  padding: 50px 0;
+  text-align: center;
+}
+
+
+
+.Présentation h2 {
+  font-size: 36px;
+  color: #0f3051;
+  margin-bottom: 20px;
+}
+
+
+
+.Paragraphe-align-justify {
+  text-align: justify;
+}
+
+.Paragraphe-align-center {
+  text-align: center;
+  text-indent: 0em;
+}
+
+
+.projet {
+  display: inline-block;
+  width: 300px;
+  height: 400px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  
+}
+
+
+.projet i {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.projet h3 {
+  font-size: 24px;
+  color: #0f3051;
+  margin-bottom: 10px;
+}
+
+
+.image_projet{  
+  background-color: #F8F8F8;
+}
+
+
+
+
+/* Section Projets */
+.Projets {
+  background-color: #0f3051;
+  color: #ffffff;
+  padding: 50px 0;
+}
+
+.Projets-content {
+  text-align: center;
+}
+
+.Projets h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.Projets p {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+/* Footer */
+
+footer {
+  background-color: #fe7563;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+
+/* Carrousel */
+
+#carrousel{
+  width: 88%;
+  height:2%;
+  position:relative;
+  margin: auto;  
+}
+
+#carrousel-container{
+  width: 60%;
+  height:2%;
+  position:relative;
+  margin: auto;
+  overflow:hidden;
+  
+}
+
+#container{
+  width: 400px;
+  height:200px;
+}
+
+.photo{
+  width:400px;
+  height:200px;
+  margin:0;
+  display:inline-block;
+  background-size:cover;
+}
+
+.bouton{
+  width: 40px;
+  cursor:pointer;
+  top:35%;
+  position:absolute;
+}
+
+#g{
+  left: 10%;
+  transform:rotate(0deg);
+  transition:all 0.3s ease;
+}
+
+#d{
+  right:10%;
+  transform:rotate(180deg);
+  transition:all 0.3s ease;
+}
+
+#g:hover{
+  transform:rotate(0deg) scale(1.1);
+  opacity:0.7;
+  transition:all 0.3s ease;
+}
+
+#d:hover{
+  transform:rotate(180deg) scale(1.1);
+  opacity:0.7;
+  transition:all 0.3s ease;
+}
