@@ -28,7 +28,7 @@
         <!-- Section Accueil -->
         <section class="accueil" id="accueil">
             <div class="accueil-content">
-                <h1 class="big-title">Bienvenue sur mon portfolio !</h1>
+                <h1 class="big-title"></h1>
             </div>
         </section>
 
@@ -150,7 +150,7 @@
 
 
         <script> 
-
+            // caroussel
             document.body.onload = function() {
                 nbr = 3;
                 p = 0;
@@ -235,6 +235,27 @@
             hamburger.addEventListener('click', function () {
                 navLinks.classList.toggle('active'); // Ajoute ou supprime la classe active
             });
+            });
+
+
+            // Animation texte 
+
+            // Cette fonction va afficher le texte lettre par lettre
+            document.addEventListener("DOMContentLoaded", function() {
+                const text = "Bienvenue sur mon portfolio !";  // Le texte à afficher
+                let index = 0;  // L'index de la lettre à afficher
+                const bigTitle = document.querySelector(".big-title");  // Sélection de l'élément avec la classe 'big-title'
+
+                // Fonction qui ajoute les lettres une par une
+                function typeText() {
+                    if (index < text.length) {
+                        bigTitle.innerHTML += text[index];  // Ajoute la lettre au contenu de l'élément
+                        index++;  // Incrémente l'index pour afficher la lettre suivante
+                        setTimeout(typeText, 75);  // Délai de 150ms avant d'ajouter la lettre suivante
+                    }
+                }
+
+                typeText();  // Démarre l'animation dès que le DOM est chargé
             });
         </script>
     </body>
