@@ -11,7 +11,7 @@
         <!-- Barre de navigation -->
         <nav class="navbar">
             <div class="logo">
-                <a href="../../index.html">
+                <a href="#accueil">
                     <img src="./Image/Mon_logo_bleu.png" alt="Logo du site">
                 </a>
             </div>
@@ -21,14 +21,14 @@
                 <li><a href="#Projets">Projets</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <img src="./Image/icon_hamburger.png" alt="icon hamburger menu" width="50px"  class="menu-hamburger">
+            <img src="./Image/icon_hamburger.png" alt="icon hamburger menu" width="50"  class="menu-hamburger">
             
         </nav>
 
         <!-- Section Accueil -->
         <section class="accueil" id="accueil">
             <div class="accueil-content">
-                <h1 class="big-title"></h1>
+                <div class="big-title"></div>
             </div>
         </section>
 
@@ -37,7 +37,7 @@
         <section class="section" id="moi">
             <!-- Titre de la partie -->
             <div class="titre">
-                <section class="Bloc_blanc"> </section>
+                <div class="Bloc_blanc"> </div>
                 <h2>A propos de moi</h2>
                 <i class="fas fa-regular fa-ellipsis" style ="font-size: 50px;"></i>
             </div>
@@ -49,17 +49,15 @@
                 <p><br>
                 Bonjour ! Je m'appelle <b>Lou-Anne Thomas</b>, étudiante en <b>BUT Science des données</b>. J'ai créé ce site dans le but de faciliter la compréhension de ma formation et de mettre en avant mes acquis.
                 <br><br>
-                Au cours de ces deux années, j'ai acquis une solide formation théorique ainsi que des compétences pratiques dans les domaines de la statistique allant de l'exploration de données à la modélisation statistique. J'ai travaillé avec des outils tels que <b>SAS</b>, <b>Rstudio</b>, <b>Excel/VBA</b>, <b>Power Bi</b> et <b>Tableau</b>. De plus, j'ai développé des compétences dans les langages <b>Python</b>,<b>JAVA</b>  et <b>SQL</b>.
-                Ces compétences me permettent de collecter, traiter et analyser efficacement des données, et de produire des résultats pertinents dans l'aide à la prise de décision, que ce soit à travers des rapports détaillés ou des visualisations. Vous retrouverez dans la rubrique <b>"Projets"</b> des exemples concrets de travaux réalisés.
-                <br><br>
-                Sur ce site, je souhaite vous présenter mes réalisations et vous démontrer ma passion pour la science des données.
+                Au cours de ces trois années, j'ai acquis une solide formation théorique ainsi que des compétences pratiques dans les domaines de la statistique allant de l'exploration de données à la modélisation statistique. J'ai travaillé avec des outils tels que <b>Excel/VBA</b>, <b>Power Bi</b> et <b>QLIK</b>. De plus, j'ai développé des compétences dans les langages <b>Python</b>,<b>SAS</b>,<b>R</b> et <b>SQL</b>.
+                Ces compétences me permettent de collecter, traiter et analyser efficacement des données, et de produire des résultats pertinents dans l'aide à la prise de décision, que ce soit à travers des rapports détaillés ou des visualisations. Vous retrouverez dans la rubrique <b>"Projets"</b> des exemples concrets de travaux réalisés.               
                 <br><br>
                 Au plaisir de discuter avec vous !
                 </p>
             </div>
     </section>
 
-    <section class="Bloc_blanc"> </section>
+    <div class="Bloc_blanc"> </div>
 
 
         <!-- Section Projets -->
@@ -74,13 +72,13 @@
                 <div id="carrousel-container">
                     <div id="container"></div>
                 </div>
-                <img src=".\Image\fleche_white.svg" class="bouton" id="d"/>
-                <img src=".\Image\fleche_white.svg" class="bouton" id="g"/>
+                <img src="./Image/fleche_white.svg" class="bouton" id="d" alt="Flèche directionnelle">
+                <img src="./Image/fleche_white.svg" class="bouton" id="g" alt="Flèche directionnelle">
             </div>
         </section>
 
 
-        <section class="Bloc_blanc"> </section>
+        <div class="Bloc_blanc"> </div>
 
         <!-- Partie Contact-->
         <section class="section-contact" id="contact">
@@ -94,12 +92,8 @@
         </section>
         
         
-       
-        
 
-
-           <!-- Dernière section -->
-    <section class="contact" id="contact">
+    <div class="contact">
         <div class="max-width">
 
             <div class="contact-content">
@@ -140,8 +134,8 @@
                 </div>
             </div>
         </div>
-    </section>
-    <section class="Bloc_blanc"> </section>
+    </div>
+    <div class="Bloc_blanc"> </div>
 
         <!-- Footer -->
         <footer>
@@ -152,7 +146,7 @@
         <script> 
             // caroussel
             document.body.onload = function() {
-                nbr = 3;
+                nbr = 4;
                 p = 0;
                 container = document.getElementById('container');
                 g = document.getElementById('g');
@@ -163,7 +157,7 @@
                 'Contenu/Portfolio_Site.pdf',
                 'Contenu/Rapport_Projet_Infractions.pdf',
                 'Contenu/Projet_HOTEL.pdf',
-                'Projets/Projet_2/projet2.html'
+                'Contenu/Rapport_Projet_AgriCan.pdf'
                 ];
 
                 for (i = 1; i <= nbr; i++) {
